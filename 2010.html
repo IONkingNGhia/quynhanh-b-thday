@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng 20/10</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 360px;
+            padding: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .card.show {
+            display: block;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 13px;
+            color: #555;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #333;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: #666;
+            border: 1px solid #ccc;
+            margin-top: 8px;
+        }
+
+        .secondary-btn:hover {
+            background: #f7f7f8;
+            color: #000;
+        }
+
+        .error-msg {
+            color: #e63946;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #typing-text-2010 {
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 80px;
+            text-align: left;
+            margin-bottom: 20px;
+            white-space: pre-line;
+            border-right: 2px solid #000;
+            padding-right: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MÀN HÌNH NHẬP MÃ 20/10 -->
+    <div class="card show" id="auth2010Card">
+        <h2>Xác thực 20/10</h2>
+        <div class="input-group">
+            <label>Nhập mã bí mật:</label>
+            <input type="password" id="pass2010" maxlength="6" placeholder="Mã 6 chữ số">
+        </div>
+        <button onclick="checkPass2010()">Xác nhận</button>
+        <button class="secondary-btn" onclick="location.href='index.html'">Trang chủ</button>
+        <div class="error-msg" id="errorMsg2010">Sai mã!</div>
+    </div>
+
+    <!-- MÀN HÌNH HIỂN THỊ LỜI CHÚC -->
+    <div class="card" id="wish2010Card">
+        <h2>Lời Chúc 20/10</h2>
+        <div id="typing-text-2010"></div>
+        <button class="secondary-btn" onclick="location.href='index.html'">Trang chủ</button>
+    </div>
+
+    <script>
+        const CORRECT_CODE = "201027";
+
+        function checkPass2010() {
+            const entered = document.getElementById('pass2010').value.trim();
+            const err = document.getElementById('errorMsg2010');
+
+            if (entered === CORRECT_CODE) {
+                document.getElementById('auth2010Card').classList.remove('show');
+                document.getElementById('wish2010Card').classList.add('show');
+                startTyping2010();
+            } else {
+                err.style.display = 'block';
+            }
+        }
+
+        // Nội dung câu chúc nối thêm chuỗi mã hóa vào cuối
+        const message2010 = "Chúc mừng ngày Phụ nữ Việt Nam 20/10.\n\nChúc bạn luôn vui vẻ, hạnh phúc và gặt hái được nhiều thành công trong cuộc sống. Sớm chạy thành công kpi>\n\nQ2FtIGa6pwFuIHbDoCB4aW4gbOG7mWk=";
+        
+        let idx2010 = 0;
+
+        function startTyping2010() {
+            const textElement = document.getElementById('typing-text-2010');
+            if (idx2010 < message2010.length) {
+                textElement.innerHTML += message2010.charAt(idx2010);
+                idx2010++;
+                setTimeout(startTyping2010, 35);
+            } else {
+                textElement.style.borderRight = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
